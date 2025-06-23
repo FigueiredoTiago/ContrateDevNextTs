@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #252525;
+  padding: 0px 20px;
+  height: 70px;
+
+  .logoContent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    &::before {
+      content: url("../.././../../public/assets/img/lineLogo.svg");
+      position: absolute;
+      bottom: -20px;
+    }
+  }
+  .logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bolder;
+    text-transform: uppercase;
+  }
+}
+
