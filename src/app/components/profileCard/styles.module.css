@@ -47,11 +47,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 
     .socialItem {
       img {
-        width: 20px;
+        width: 25px;
       }
     }
 
@@ -59,6 +59,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 5px;
 
       img {
         width: 20px;
