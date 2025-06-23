@@ -1,0 +1,20 @@
+.loginBtn {
+    width: 212px;
+    height: 50px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bolder;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        scale: 1.1;
+    }
+}

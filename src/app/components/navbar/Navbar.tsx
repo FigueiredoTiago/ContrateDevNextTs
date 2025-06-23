@@ -2,6 +2,7 @@ import styles from "./styles.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../../public/assets/img/logo.svg";
+import ModalLogin from "../ModalLogin/ModalLogin";
 
 const Navbar = () => {
   return (
@@ -12,6 +13,8 @@ const Navbar = () => {
           contrate.dev
         </Link>
       </nav>
+
+      <ModalLogin />
     </header>
   );
 };

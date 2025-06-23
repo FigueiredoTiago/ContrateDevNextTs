@@ -1,4 +1,7 @@
 "use client";
+import styles from "./styles.module.css";
+import Image from "next/image";
+import githubIcon from "../../../../public/assets/img/github.svg";
 
 export default function LoginBtn() {
   const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID;
@@ -9,5 +12,9 @@ export default function LoginBtn() {
     window.location.href = githubAuthUrl;
   };
 
-  return <button onClick={redirectToGithub}>Entrar com GitHub</button>;
+  return (
+    <button className={styles.loginBtn} onClick={redirectToGithub}>
+      <Image src={githubIcon} alt="Icone Git hub" width={32} /> Entrar com GitHub
+    </button>
+  );
 }

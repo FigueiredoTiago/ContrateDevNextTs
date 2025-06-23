@@ -25,7 +25,6 @@ a {
   text-decoration: none;
 }
 
-
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -34,3 +33,6 @@ a {
   background-color: #252525;
 }
 
+button {
+  font-family: "Inter", sans-serif;
+}
