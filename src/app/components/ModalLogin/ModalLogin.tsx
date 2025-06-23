@@ -1,3 +1,4 @@
+"use client";
 import styles from "./styles.module.css";
 import LoginBtn from "../loginBtn/LoginBtn";
 import Image from "next/image";
