@@ -1,0 +1,19 @@
+.modalContent {
+  height: 800px;
+  width: 600px;
+  border-radius: 10px;
+  background-color: #252525;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+} 

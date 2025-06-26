@@ -14,7 +14,8 @@ export default function LoginBtn() {
 
   return (
     <button className={styles.loginBtn} onClick={redirectToGithub}>
-      <Image src={githubIcon} alt="Icone Git hub" width={32} /> Entrar com GitHub
+      <Image src={githubIcon} alt="Icone Git hub" width={32} /> Entrar com
+      GitHub
     </button>
   );
 }
