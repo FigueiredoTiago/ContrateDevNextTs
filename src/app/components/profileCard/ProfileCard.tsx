@@ -18,7 +18,7 @@ const ProfileCard = ({ profile }: ProfileCardProps) => {
       </div>
 
       <div className={styles.info}>
-        <p className={styles.stacks}>{profile.stacks}</p>
+        <p className={styles.stacks}>{profile.stacks.slice(0, 3).join(", ")}</p>
         <h2 className={styles.name}>{profile.name}</h2>
         <p className={styles.mainStack}>{profile.mainStack}</p>
       </div>
