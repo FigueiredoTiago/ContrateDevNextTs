@@ -4,7 +4,7 @@
 
 ## 🧠 Sobre o projeto
 
-**Contrate.dev** é uma plataforma 100% **gratuita** e **open-source**, feita com muito carinho para ajudar **desenvolvedores** a se conectarem com **oportunidades reais**!  
+**Contrate.dev** é uma plataforma 100% **gratuita** e **open-source**, feita com muito carinho para ajudar **desenvolvedores** a se divulgarem com Seus Perfis publicos para que encontrem **oportunidades reais**!  
 Utilizando autenticação via GitHub, os usuários podem criar um perfil profissional que ficará disponível para **recrutadores, empresas e pessoas interessadas em contratar** devs de qualquer stack e nível de experiência.
 
 🔍 Através de filtros por **stack**, **localidade** ou **senioridade**, é possível encontrar os talentos ideais com facilidade.  
