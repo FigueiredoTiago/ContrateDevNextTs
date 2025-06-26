@@ -32,10 +32,8 @@ const Dashboard = () => {
       </header>
 
       <section className={styles.cardContent}>
-        <ProfileCard />
-
         {data &&
-          data.map((profile) => <h1 key={profile.id}>{profile.name}</h1>)}
+          data.map((profileData) => <ProfileCard key={profileData.id} profile={profileData} />)}
       </section>
     </main>
   );

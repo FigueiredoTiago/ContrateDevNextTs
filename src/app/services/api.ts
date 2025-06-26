@@ -1,5 +1,5 @@
 //funcao para pegar todos os perfis curriculos cadastrados
-
+import { Profile } from "../types/Profile";
 import axios from "axios";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -10,20 +10,6 @@ export const api = axios.create({
     "Content-Type": "application/json",
   },
 });
-
-export interface Profile {
-  id: string;
-  userId: string;
-  name: string;
-  email: string;
-  githubUrl: string;
-  linkedinUrl: string;
-  websiteUrl: string;
-  city: string;
-  phone: string;
-  about: string;
-  stacks: string[];
-}
 
 //pega todos os CVs cadastrados
 
