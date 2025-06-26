@@ -48,6 +48,11 @@
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes rotation {
@@ -57,4 +62,12 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.info {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  color: #fdfdfd;
+  font-weight: bolder;
 }

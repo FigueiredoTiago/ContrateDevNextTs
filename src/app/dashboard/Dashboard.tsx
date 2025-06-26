@@ -12,9 +12,6 @@ const Dashboard = () => {
     queryFn: getProfiles,
   });
 
-  if (isLoading) {
-    return <span className="loader"></span>;
-  }
   return (
     <main className={styles.container}>
       <header className={styles.mainHeader}>
@@ -31,10 +28,21 @@ const Dashboard = () => {
         <Modalprofile />
       </header>
 
-      <section className={styles.cardContent}>
-        {data &&
-          data.map((profileData) => <ProfileCard key={profileData.id} profile={profileData} />)}
-      </section>
+      {/* transformar essa sessao em um componente pois deve ter logica de filtragem */}
+
+      {isLoading ? (
+        <span className={styles.loader}></span>
+      ) : (
+        <section className={styles.cardContent}>
+          {data && data.length > 0 ? (
+            data.map((profileData) => (
+              <ProfileCard key={profileData.id} profile={profileData} />
+            ))
+          ) : (
+            <p className={styles.info}>{error?.message}</p>
+          )}
+        </section>
+      )}
     </main>
   );
 };

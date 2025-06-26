@@ -16,13 +16,19 @@ export const api = axios.create({
 export const getProfiles = async (): Promise<Profile[]> => {
   try {
     const response = await api.get<Profile[]>("profile/random");
-    if (response.data.length > 0) {
-      return response.data;
+
+    if (Array.isArray(response.data) && response.data.length === 0) {
+      throw new Error("Nenhum perfil encontrado.");
     }
 
-    return [];
+    return response.data;
   } catch (error) {
-    console.log("Error na api getProfiles:", error);
-    return [];
+    if (axios.isAxiosError(error) && error.response) {
+      const errorMessage =
+        error.response.data?.message || "Erro desconhecido na API";
+      throw new Error(errorMessage);
+    }
+
+    throw new Error("Erro ao buscar perfis.");
   }
 };
