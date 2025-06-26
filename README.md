@@ -1,6 +1,6 @@
 # 🚀 Contrate.dev — Conectando Desenvolvedores ao Futuro do Trabalho
 
-![Contrate.dev Banner](https://your-banner-link-if-you-have-one.com)
+![Contrate.dev Banner](public/assets/img/bannerTemporario.jpg)
 
 ## 🧠 Sobre o projeto
 
