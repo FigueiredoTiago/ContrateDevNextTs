@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Contrate.dev — Conectando Desenvolvedores ao Futuro do Trabalho
 
-## Getting Started
+![Contrate.dev Banner](https://your-banner-link-if-you-have-one.com)
 
-First, run the development server:
+## 🧠 Sobre o projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Contrate.dev** é uma plataforma 100% **gratuita** e **open-source**, feita com muito carinho para ajudar **desenvolvedores** a se conectarem com **oportunidades reais**!  
+Utilizando autenticação via GitHub, os usuários podem criar um perfil profissional que ficará disponível para **recrutadores, empresas e pessoas interessadas em contratar** devs de qualquer stack e nível de experiência.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🔍 Através de filtros por **stack**, **localidade** ou **senioridade**, é possível encontrar os talentos ideais com facilidade.  
+🌀 Os desenvolvedores são exibidos de forma **aleatória a cada visita**, para dar visibilidade igual a todos.  
+📝 Cada perfil pode ser expandido para ver informações detalhadas, como biografia, habilidades e mais.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Ah, e tudo isso com **visual bonito**, **design moderno**, e claro, com **exportação de currículo** disponível! 📄✨
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧑‍💻 Funcionalidades principais
 
-To learn more about Next.js, take a look at the following resources:
+- 🔐 Login com GitHub
+- 📝 Cadastro de currículo com:
+  - Nome, e-mail, cidade 🌆
+  - Stack principal e skills ⚙️
+  - Biografia personalizada ✍️
+- 🎯 Filtros por stack, localidade e senioridade
+- 🔁 Exibição aleatória de perfis a cada acesso
+- 🔎 Visualização expandida dos perfis
+- 📤 Exportação de currículo
+- 🔗 Compartilhamento de link direto para o currículo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🖼️ Tecnologias utilizadas
 
-## Deploy on Vercel
+| Frontend         | Outras Tecnologias         |
+|------------------|----------------------------|
+| ✅ Next.js        | 🎯 TypeScript              |
+| ⚛️ React         | 🔗 Axios                   |
+| 💅 CSS Modules   | 🧪 Jest + React Testing Library |
+| 🔍 TanStack Query | 🎨 Figma (design)         |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desenvolvido com 💻 por Tiago Figueiredo
+Entre em contato:
+
+GitHub: @look_at_me_tf
+
+LinkedIn: https://www.linkedin.com/in/tf-tiagofigueiredo/
