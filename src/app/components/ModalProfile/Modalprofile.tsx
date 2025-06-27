@@ -1,9 +1,47 @@
 "use client";
+import Select from "react-select";
 import styles from "./styles.module.css";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import * as React from "react";
 import Modal from "@mui/material/Modal";
+
+const skillOptions = [
+  { value: "React", label: "React" },
+  { value: "Vue", label: "Vue" },
+  { value: "Angular", label: "Angular" },
+  { value: "SASS", label: "SASS" },
+  { value: "CSS", label: "CSS" },
+  { value: "HTML", label: "HTML" },
+  { value: "Node.js", label: "Node.js" },
+  { value: "Java", label: "Java" },
+  { value: "Python", label: "Python" },
+  { value: "PHP", label: "PHP" },
+  { value: "Ruby", label: "Ruby" },
+  { value: "Go", label: "Go" },
+  { value: "React Native", label: "React Native" },
+  { value: "Flutter", label: "Flutter" },
+  { value: "Kotlin", label: "Kotlin" },
+  { value: "Swift", label: "Swift" },
+  { value: "Docker", label: "Docker" },
+  { value: "Kubernetes", label: "Kubernetes" },
+  { value: "AWS", label: "AWS" },
+  { value: "Azure", label: "Azure" },
+  { value: "CI/CD", label: "CI/CD" },
+  { value: "Cypress", label: "Cypress" },
+  { value: "Jest", label: "Jest" },
+  { value: "Selenium", label: "Selenium" },
+  { value: "Playwright", label: "Playwright" },
+  { value: "SQL", label: "SQL" },
+  { value: "NoSQL", label: "NoSQL" },
+  { value: "MongoDB", label: "MongoDB" },
+  { value: "PostgreSQL", label: "PostgreSQL" },
+  { value: "Power BI", label: "Power BI" },
+  { value: "Figma", label: "Figma" },
+  { value: "Adobe XD", label: "Adobe XD" },
+  { value: "Sketch", label: "Sketch" },
+  { value: "Zeplin", label: "Zeplin" },
+];
 
 export default function Modalprofile() {
   const [open, setOpen] = React.useState(false);
@@ -14,11 +52,13 @@ export default function Modalprofile() {
     register,
     handleSubmit,
     formState: { errors },
+    control,
     reset,
   } = useForm();
 
   const onSubmit = async (data: any) => {
     console.log(data);
+    reset();
   };
 
   return (
@@ -35,70 +75,291 @@ export default function Modalprofile() {
         aria-describedby="modal-modal-description"
       >
         <div className={styles.modalContent}>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              id="name"
-              {...register("name", {
-                required: "required",
-              })}
-              type="text"
-              placeholder="Nome Completo"
-            />
-            {errors.name && <span role="alert">Nome e Obrigatorio!</span>}
+          <h2>DADOS DO MEU PERFIL (PUBLICO)</h2>
+          <p>Alguns dados Serão preenchidos com suas informações do GitHub </p>
 
-            <input
-              id="email"
-              {...register("email", {
-                required: "required",
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: "Entered value does not match email format",
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className={styles.row}>
+              <input
+                id="name"
+                {...register("name", {
+                  required: "required",
+                })}
+                type="text"
+                placeholder="Nome Completo"
+              />
+
+              <input
+                id="email"
+                {...register("email", {
+                  required: "required",
+                  pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "Entered value does not match email format",
+                  },
+                })}
+                type="email"
+                placeholder="Email"
+              />
+            </div>
+
+            <div className={styles.errorBox}>
+              {errors.name && <span role="alert">Nome e Obrigatorio!</span>}
+              {errors.email && typeof errors.email.message === "string" && (
+                <span role="alert">Email e Obrigatorio!</span>
+              )}
+            </div>
+
+            <div className={styles.row}>
+              <input
+                id="perfilGithub"
+                {...register("githubUrl", {
+                  required: "required",
+                })}
+                type="text"
+                placeholder="Link do Perfil Github"
+              />
+
+              <input
+                id="perfilLinkedin"
+                {...register("linkedinUrl", {
+                  required: "required",
+                })}
+                type="text"
+                placeholder="Link do Perfil LinkedIn"
+              />
+            </div>
+
+            <div className={styles.errorBox}>
+              {errors.githubUrl && (
+                <span role="alert"> Link do Perfil Github e Obrigatorio! </span>
+              )}
+              {errors.linkedinUrl && (
+                <span role="alert">
+                  {" "}
+                  Link do Perfil LinkedIn e Obrigatorio!
+                </span>
+              )}
+            </div>
+
+            <div className={styles.row}>
+              <select
+                id="estado"
+                {...register("city", {
+                  required: "Estado é obrigatório",
+                })}
+                defaultValue=""
+                className={styles.selectDark}
+              >
+                <option value="" disabled>
+                  Selecione um estado
+                </option>
+                <option value="AC">Acre (AC)</option>
+                <option value="AL">Alagoas (AL)</option>
+                <option value="AP">Amapá (AP)</option>
+                <option value="AM">Amazonas (AM)</option>
+                <option value="BA">Bahia (BA)</option>
+                <option value="CE">Ceará (CE)</option>
+                <option value="DF">Distrito Federal (DF)</option>
+                <option value="ES">Espírito Santo (ES)</option>
+                <option value="GO">Goiás (GO)</option>
+                <option value="MA">Maranhão (MA)</option>
+                <option value="MT">Mato Grosso (MT)</option>
+                <option value="MS">Mato Grosso do Sul (MS)</option>
+                <option value="MG">Minas Gerais (MG)</option>
+                <option value="PA">Pará (PA)</option>
+                <option value="PB">Paraíba (PB)</option>
+                <option value="PR">Paraná (PR)</option>
+                <option value="PE">Pernambuco (PE)</option>
+                <option value="PI">Piauí (PI)</option>
+                <option value="RJ">Rio de Janeiro (RJ)</option>
+                <option value="RN">Rio Grande do Norte (RN)</option>
+                <option value="RS">Rio Grande do Sul (RS)</option>
+                <option value="RO">Rondônia (RO)</option>
+                <option value="RR">Roraima (RR)</option>
+                <option value="SC">Santa Catarina (SC)</option>
+                <option value="SP">São Paulo (SP)</option>
+                <option value="SE">Sergipe (SE)</option>
+                <option value="TO">Tocantins (TO)</option>
+              </select>
+
+              <select
+                id="stack"
+                {...register("mainStack", {
+                  required: "A stack principal é obrigatória",
+                })}
+                defaultValue=""
+                className={styles.selectDark}
+              >
+                <option value="" disabled>
+                  Selecione sua stack principal
+                </option>
+
+                {/* Frontend */}
+                <option value="JR.Frontend">JR.Frontend</option>
+                <option value="PL.Frontend">PL.Frontend</option>
+                <option value="SR.Frontend">SR.Frontend</option>
+
+                {/* Backend */}
+                <option value="JR.Backend">JR.Backend</option>
+                <option value="PL.Backend">PL.Backend</option>
+                <option value="SR.Backend">SR.Backend</option>
+
+                {/* Fullstack */}
+                <option value="JR.Fullstack">JR.Fullstack</option>
+                <option value="PL.Fullstack">PL.Fullstack</option>
+                <option value="SR.Fullstack">SR.Fullstack</option>
+
+                {/* Mobile */}
+                <option value="JR.Mobile">JR.Mobile</option>
+                <option value="PL.Mobile">PL.Mobile</option>
+                <option value="SR.Mobile">SR.Mobile</option>
+
+                {/* DevOps */}
+                <option value="JR.DevOps">JR.DevOps</option>
+                <option value="PL.DevOps">PL.DevOps</option>
+                <option value="SR.DevOps">SR.DevOps</option>
+
+                {/* QA */}
+                <option value="JR.QA">JR.QA</option>
+                <option value="PL.QA">PL.QA</option>
+                <option value="SR.QA">SR.QA</option>
+
+                {/* Dados */}
+                <option value="JR.Dados">JR.Dados</option>
+                <option value="PL.Dados">PL.Dados</option>
+                <option value="SR.Dados">SR.Dados</option>
+
+                {/* UI/UX */}
+                <option value="JR.UI/UX">JR.UI/UX</option>
+                <option value="PL.UI/UX">PL.UI/UX</option>
+                <option value="SR.UI/UX">SR.UI/UX</option>
+              </select>
+            </div>
+
+            <div className={styles.errorBox}>
+              {errors.city && <span role="alert">Cidade e obrigatoria!</span>}
+              {errors.mainStack &&
+                typeof errors.mainStack.message === "string" && (
+                  <span role="alert">{errors.mainStack.message}</span>
+                )}
+            </div>
+
+            <div className={styles.row}>
+              <input
+                id="telefone"
+                type="tel"
+                placeholder="(11) 91234-5678"
+                {...register("phone", {
+                  required: "O número de celular é obrigatório",
+                  pattern: {
+                    value: /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/,
+                    message: "Número de celular inválido",
+                  },
+                })}
+              />
+
+              <Controller
+                control={control}
+                name="skills"
+                rules={{ required: "Selecione pelo menos uma skill" }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={skillOptions}
+                    isMulti
+                    placeholder="Selecione suas skills..."
+                    className={styles.selectCustom}
+                    styles={{
+                      control: (base) => ({
+                        ...base,
+                        backgroundColor: "#282828",
+                        borderColor: "#fff",
+                        color: "#fff",
+                        borderRadius: "10px",
+                        minHeight: "52px",
+                      }),
+                      menu: (base) => ({
+                        ...base,
+                        backgroundColor: "#282828",
+                        color: "#fff",
+                        borderRadius: "10px",
+                      }),
+                      multiValue: (base) => ({
+                        ...base,
+                        backgroundColor: "#444",
+                        color: "#fff",
+                      }),
+                      multiValueLabel: (base) => ({
+                        ...base,
+                        color: "#fff",
+                      }),
+                      multiValueRemove: (base) => ({
+                        ...base,
+                        color: "#ccc",
+                        ":hover": {
+                          backgroundColor: "#ff6b6b",
+                          color: "#fff",
+                        },
+                      }),
+                      input: (base) => ({
+                        ...base,
+                        color: "#fff",
+                      }),
+                      placeholder: (base) => ({
+                        ...base,
+                        color: "#fff",
+                      }),
+                      option: (base, state) => ({
+                        ...base,
+                        backgroundColor: state.isSelected
+                          ? "#444"
+                          : state.isFocused
+                          ? "#333"
+                          : "transparent",
+                        color: "#fff",
+                        cursor: "pointer",
+                      }),
+                      singleValue: (base) => ({
+                        ...base,
+                        color: "#fff",
+                      }),
+                    }}
+                  />
+                )}
+              />
+            </div>
+
+            <div className={styles.errorBox}>
+              {errors.phone && typeof errors.phone.message === "string" && (
+                <span role="alert">{errors.phone.message}</span>
+              )}
+              {errors.skills && typeof errors.skills.message === "string" && (
+                <span role="alert">{errors.skills.message}</span>
+              )}
+            </div>
+
+            <textarea
+              id="biografia"
+              placeholder="Fale um pouco sobre você..."
+              {...register("bio", {
+                required: "A biografia é obrigatória",
+                maxLength: {
+                  value: 1500,
+                  message: "A biografia deve ter no máximo 1500 caracteres",
                 },
               })}
-              type="email"
-              placeholder="Email"
             />
-            {errors.email && typeof errors.email.message === "string" && (
-              <span role="alert">{errors.email.message}</span>
-            )}
 
-            <input
-              id="perfilGithub"
-              {...register("githubUrl", {
-                required: "required",
-              })}
-              type="text"
-              placeholder="Link do Perfil Github"
-            />
-            {errors.githubUrl && (
-              <span role="alert"> Link do Perfil Github e Obrigatorio! </span>
-            )}
+            <div className={styles.errorBox}>
+              {errors.bio && typeof errors.bio.message === "string" && (
+                <span role="alert">{errors.bio.message}</span>
+              )}
+            </div>
 
-            <input
-              id="perfilLinkedin"
-              {...register("linkedinUrl", {
-                required: "required",
-              })}
-              type="text"
-              placeholder="Link do Perfil LinkedIn"
-            />
-            {errors.linkedinUrl && (
-              <span role="alert"> Link do Perfil LinkedIn e Obrigatorio!</span>
-            )}
-
-            <input
-              id="cidade"
-              {...register("city", {
-                required: "required",
-              })}
-              type="text"
-              placeholder="Link do Perfil LinkedIn"
-            />
-            {errors.linkedinUrl && (
-              <span role="alert"> Link do Perfil LinkedIn e Obrigatorio!</span>
-            )}
-
-            <button type="submit">Atualizar Perfil</button>
+            <button type="submit" className={styles.formBtn}>
+              SALVAR
+            </button>
           </form>
         </div>
       </Modal>

@@ -1,19 +1,120 @@
 .modalContent {
-  height: 800px;
+  height: 100dvh;
   width: 600px;
   border-radius: 10px;
   background-color: #252525;
-
+  padding: 20px 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
+  text-align: center;
+
+  h2 {
+    font-size: 28px;
+  }
+
+  p {
+    font-weight: lighter;
+    margin-bottom: 20px;
+  }
 
   form {
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    overflow-y: auto;
+    max-height: calc(100dvh - 80px);
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    input,
+    select {
+      padding: 0 10px;
+      width: 260px;
+      height: 52px;
+      background-color: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 10px;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+
+      &::placeholder {
+        color: #fff;
+      }
+    }
+
+    .selectDark {
+      width: 260px; /* ajuste conforme seu layout */
+      height: 52px;
+      background-color: #282828;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 10px;
+      padding: 0 10px;
+      font-size: 14px;
+      appearance: none; /* remove seta padrão */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'5'%20viewBox%3D'0%200%2010%205'%20fill%3D'white'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200L5%205L10%200H0Z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 10px;
+    }
+
+    /* Estilo do placeholder (option desabilitado) */
+    .selectDark option[disabled] {
+      color: #999;
+    }
+
+    textarea {
+      width: 540px;
+      height: 230px;
+      padding: 10px;
+      background-color: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 10px;
+      font-family: unset;
+      resize: none;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .formBtn {
+      background-color: #fff;
+      font-weight: bold;
+      border: none;
+      outline: none;
+      border-radius: 15px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .errorBox {
+      display: flex;
+      gap: 10px;
+      span[role="alert"] {
+        color: #ff6b6b;
+        font-size: 10px;
+        display: block;
+      }
+    }
+
+    .selectCustom {
+      height: 52px;
+      width: 260px;
+      text-align: left;
+    }
   }
-} 
+}
