@@ -13,3 +13,17 @@ export interface Profile {
   mainStack: string;
   stacks: string[];
 }
+
+export type CreateProfileData = {
+  name: string;
+  avatarUrl: string;
+  email: string;
+  githubUrl: string;
+  linkedinUrl: string;
+  websiteUrl: string;
+  city: string;
+  phone: string;
+  about: string;
+  mainStack: string;
+  stacks: string[];
+};

@@ -1,12 +1,20 @@
 "use client";
-import Select from "react-select";
+import Select, { MultiValue } from "react-select";
 import styles from "./styles.module.css";
 import { useForm, Controller } from "react-hook-form";
 
 import * as React from "react";
 import Modal from "@mui/material/Modal";
 
-const skillOptions = [
+import { createProfile } from "@/app/services/api";
+import { CreateProfileData } from "@/app/types/Profile";
+
+type Option = {
+  value: string;
+  label: string;
+};
+
+const skillOptions: Option[] = [
   { value: "React", label: "React" },
   { value: "Vue", label: "Vue" },
   { value: "Angular", label: "Angular" },
@@ -54,11 +62,29 @@ export default function Modalprofile() {
     formState: { errors },
     control,
     reset,
-  } = useForm();
+  } = useForm<CreateProfileData>();
 
-  const onSubmit = async (data: any) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data: CreateProfileData) => {
+    // const avatarUrl = Cookies.get("avatarUrl");
+    const avatarUrl =
+      "https://cdn.leonardo.ai/users/6539d003-c1f3-4720-8251-97c73d5a4ff9/generations/527cb8bf-31ad-477b-822a-83260b39cd69/Leonardo_Phoenix_10_A_stylized_highcontrast_black_silhouette_o_3.jpg?w=512";
+
+    const fullData = {
+      ...data,
+      avatarUrl,
+    };
+
+    console.log(fullData);
+
+    try {
+      const response = await createProfile(fullData);
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao criar perfil: " + err);
+    }
+    // reset();
+    // handleClose();
   };
 
   return (
@@ -261,15 +287,24 @@ export default function Modalprofile() {
 
               <Controller
                 control={control}
-                name="skills"
+                name="stacks"
                 rules={{ required: "Selecione pelo menos uma skill" }}
                 render={({ field }) => (
-                  <Select
-                    {...field}
+                  <Select<Option, true>
                     options={skillOptions}
                     isMulti
                     placeholder="Selecione suas skills..."
                     className={styles.selectCustom}
+                    value={skillOptions.filter((option) =>
+                      Array.isArray(field.value)
+                        ? field.value.includes(option.value)
+                        : false
+                    )}
+                    onChange={(selected) => {
+                      field.onChange(
+                        selected ? selected.map((opt) => opt.value) : []
+                      );
+                    }}
                     styles={{
                       control: (base) => ({
                         ...base,
@@ -334,15 +369,32 @@ export default function Modalprofile() {
               {errors.phone && typeof errors.phone.message === "string" && (
                 <span role="alert">{errors.phone.message}</span>
               )}
-              {errors.skills && typeof errors.skills.message === "string" && (
-                <span role="alert">{errors.skills.message}</span>
+              {errors.stacks && typeof errors.stacks.message === "string" && (
+                <span role="alert">{errors.stacks.message}</span>
+              )}
+            </div>
+
+            <div className={styles.row_unique}>
+              <input
+                id="website"
+                {...register("websiteUrl", {
+                  required: "required",
+                })}
+                type="text"
+                placeholder="Site pessoal"
+              />
+            </div>
+
+            <div className={styles.errorBox}>
+              {errors.websiteUrl && (
+                <span role="alert">Website e obrigatorio!</span>
               )}
             </div>
 
             <textarea
               id="biografia"
               placeholder="Fale um pouco sobre você..."
-              {...register("bio", {
+              {...register("about", {
                 required: "A biografia é obrigatória",
                 maxLength: {
                   value: 1500,
@@ -352,8 +404,8 @@ export default function Modalprofile() {
             />
 
             <div className={styles.errorBox}>
-              {errors.bio && typeof errors.bio.message === "string" && (
-                <span role="alert">{errors.bio.message}</span>
+              {errors.about && typeof errors.about.message === "string" && (
+                <span role="alert">{errors.about.message}</span>
               )}
             </div>
 
