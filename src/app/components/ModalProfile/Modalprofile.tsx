@@ -2,6 +2,7 @@
 import Select, { MultiValue } from "react-select";
 import styles from "./styles.module.css";
 import { useForm, Controller } from "react-hook-form";
+import Cookies from "js-cookie";
 
 import * as React from "react";
 import Modal from "@mui/material/Modal";
@@ -65,9 +66,7 @@ export default function Modalprofile() {
   } = useForm<CreateProfileData>();
 
   const onSubmit = async (data: CreateProfileData) => {
-    // const avatarUrl = Cookies.get("avatarUrl");
-    const avatarUrl =
-      "https://cdn.leonardo.ai/users/6539d003-c1f3-4720-8251-97c73d5a4ff9/generations/527cb8bf-31ad-477b-822a-83260b39cd69/Leonardo_Phoenix_10_A_stylized_highcontrast_black_silhouette_o_3.jpg?w=512";
+    const avatarUrl = Cookies.get("avatarUrl") as string;
 
     const fullData = {
       ...data,

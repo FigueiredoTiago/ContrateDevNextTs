@@ -21,8 +21,6 @@ export default function GithubCallback() {
         });
         const { user, token } = response.data;
 
-        queryClient.setQueryData(["userAuth"], response.data);
-
         Cookies.set("token", token, { expires: 1 });
 
         Cookies.set("userName", user.name, { expires: 1 });
@@ -30,7 +28,7 @@ export default function GithubCallback() {
         Cookies.set("avatarUrl", user.avatarUrl, { expires: 1 });
 
         router.push("/");
-        
+
       } catch (error: any) {
         if (error.response) {
           // Resposta do servidor com código de erro
