@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { queryClient } from "@/app/services/queryClient";
+import Cookies from "js-cookie";
 
 export default function GithubCallback() {
   const router = useRouter();
@@ -17,10 +19,18 @@ export default function GithubCallback() {
         const response = await axios.post("http://localhost:3333/auth/login", {
           code,
         });
-        const { user } = response.data;
-        console.log("Usuário autenticado:", user);
-        console.log("Respopsta da Response:", response.data); //salvar token nos cokies aqui
+        const { user, token } = response.data;
+
+        queryClient.setQueryData(["userAuth"], response.data);
+
+        Cookies.set("token", token, { expires: 1 });
+
+        Cookies.set("userName", user.name, { expires: 1 });
+
+        Cookies.set("avatarUrl", user.avatarUrl, { expires: 1 });
+
         router.push("/");
+        
       } catch (error: any) {
         if (error.response) {
           // Resposta do servidor com código de erro
