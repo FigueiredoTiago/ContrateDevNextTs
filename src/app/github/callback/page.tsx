@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { queryClient } from "@/app/services/queryClient";
 import Cookies from "js-cookie";
 
 export default function GithubCallback() {
@@ -26,6 +25,8 @@ export default function GithubCallback() {
         Cookies.set("userName", user.name, { expires: 1 });
 
         Cookies.set("avatarUrl", user.avatarUrl, { expires: 1 });
+
+        console.log(user);
 
         router.push("/");
 

@@ -25,5 +25,33 @@
     font-weight: bolder;
     text-transform: uppercase;
   }
+
+  .boxBtn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .userName {
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bolder;
+  }
+
+  .logOutBtn {
+    background-color: transparent;
+    border: none;
+    color: #3B82F6;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    text-decoration: underline;
+
+    &:hover {
+      scale: 1.1;
+      color: #fff;
+    }
+  }
 }
 
