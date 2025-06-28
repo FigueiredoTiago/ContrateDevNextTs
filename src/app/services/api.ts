@@ -1,6 +1,7 @@
 //funcao para pegar todos os perfis curriculos cadastrados
 import { Profile, CreateProfileData } from "../types/Profile";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -35,9 +36,8 @@ export const getProfiles = async (): Promise<Profile[]> => {
 
 api.interceptors.request.use(
   (config) => {
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjYjI1ZWIxLWZkYjItNGVjYy04YzkwLTg3OTg1YWFkMGFkMSIsImlhdCI6MTc1MTAyODQwNywiZXhwIjoxNzUxMTE0ODA3fQ.e2Z-TSbk-JfZSGiGCnLlG_nkOHukFVSUYbXOn9yh3Vw";
-    // const token = localStorage.getItem("token"); // ou use cookies, sessionStorage etc.
+    const token = Cookies.get("userName");
+    
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
