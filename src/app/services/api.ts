@@ -36,8 +36,8 @@ export const getProfiles = async (): Promise<Profile[]> => {
 
 api.interceptors.request.use(
   (config) => {
-    const token = Cookies.get("userName");
-    
+    const token = Cookies.get("token");
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
