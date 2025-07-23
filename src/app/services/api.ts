@@ -63,3 +63,20 @@ export const createProfile = async (
     throw new Error("Erro ao criar perfil.");
   }
 };
+
+//pegar o profile de um usuario usando o id do userId
+
+export const getProfileByUserId = async (userId: string): Promise<Profile> => {
+  try {
+    const response = await api.get(`/profile/user/${userId}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      const errorMessage =
+        error.response.data?.message || "Erro desconhecido na API";
+      throw new Error(errorMessage);
+    }
+
+    throw new Error("Erro ao buscarf perfil.");
+  }
+};

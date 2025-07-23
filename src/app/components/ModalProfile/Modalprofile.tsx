@@ -9,10 +9,10 @@ import Modal from "@mui/material/Modal";
 
 import { createProfile } from "@/app/services/api";
 import { CreateProfileData } from "@/app/types/Profile";
+import { getProfileByUserId } from "../../services/api";
 
 import Image from "next/image";
-
-import glasses from '../../../../public/assets/img/glasses.svg';
+import glasses from "../../../../public/assets/img/glasses.svg";
 
 type Option = {
   value: string;
@@ -61,6 +61,37 @@ export default function Modalprofile() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // PEGAR O ID DO USUARIO DO COOKIES E FAZER UM FETCH NA ROTA GETBYUSERID, PARA PREENCHER OS DADOS DO USUARIO.
+
+  React.useEffect(() => {
+    const userId = Cookies.get("id");
+
+    if (!userId) return;
+
+    const fetchProfile = async () => {
+      try {
+        const profileData = await getProfileByUserId(userId);
+
+        reset({
+          name: profileData.name || "",
+          email: profileData.email || "",
+          githubUrl: profileData.githubUrl || "",
+          linkedinUrl: profileData.linkedinUrl || "",
+          city: profileData.city || "",
+          mainStack: profileData.mainStack || "",
+          phone: profileData.phone || "",
+          stacks: profileData.stacks || [],
+          websiteUrl: profileData.websiteUrl || "",
+          about: profileData.about || "",
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -92,7 +123,6 @@ export default function Modalprofile() {
 
   return (
     <div>
-
       <button className={styles.btnModal} onClick={handleOpen}>
         {" "}
         Meu Perfil <Image src={glasses} alt="icone view" />

@@ -21,7 +21,7 @@ export default function GithubCallback() {
 
         console.log("Dados do fetch de login ", response.data);
 
-        const { user, token, id } = response.data;
+        const { user, token } = response.data;
 
         Cookies.set("token", token, { expires: 1 });
 

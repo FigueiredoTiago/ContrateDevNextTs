@@ -7,6 +7,7 @@ export function logout() {
   Cookies.remove("token");
   Cookies.remove("userName");
   Cookies.remove("avatarUrl");
+  Cookies.remove("id");
 
   window.location.href = "/";
 }
