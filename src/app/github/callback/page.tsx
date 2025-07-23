@@ -18,18 +18,20 @@ export default function GithubCallback() {
         const response = await axios.post("http://localhost:3333/auth/login", {
           code,
         });
-        const { user, token } = response.data;
+
+        console.log("Dados do fetch de login ", response.data);
+
+        const { user, token, id } = response.data;
 
         Cookies.set("token", token, { expires: 1 });
+
+        Cookies.set("id", user.id, { expires: 1 });
 
         Cookies.set("userName", user.name, { expires: 1 });
 
         Cookies.set("avatarUrl", user.avatarUrl, { expires: 1 });
 
-        console.log(user);
-
         router.push("/");
-
       } catch (error: any) {
         if (error.response) {
           // Resposta do servidor com código de erro
