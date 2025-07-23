@@ -10,6 +10,10 @@ import Modal from "@mui/material/Modal";
 import { createProfile } from "@/app/services/api";
 import { CreateProfileData } from "@/app/types/Profile";
 
+import Image from "next/image";
+
+import glasses from '../../../../public/assets/img/glasses.svg';
+
 type Option = {
   value: string;
   label: string;
@@ -88,9 +92,10 @@ export default function Modalprofile() {
 
   return (
     <div>
+
       <button className={styles.btnModal} onClick={handleOpen}>
         {" "}
-        Meu Perfil
+        Meu Perfil <Image src={glasses} alt="icone view" />
       </button>
 
       <Modal

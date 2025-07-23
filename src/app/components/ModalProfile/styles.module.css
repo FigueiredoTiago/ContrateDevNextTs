@@ -128,3 +128,16 @@
     }
   }
 }
+
+.btnModal {
+  background-color: #FFF;
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
