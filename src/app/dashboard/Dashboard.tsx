@@ -5,12 +5,17 @@ import Modalprofile from "../components/ModalProfile/Modalprofile";
 
 import { getProfiles } from "../services/api";
 import { useQuery } from "@tanstack/react-query";
+import { isAuth } from "../hooks/isAuth";
 
 const Dashboard = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["profiles"],
     queryFn: getProfiles,
   });
+
+  const { isAuthenticated, user } = isAuth();
+
+  console.log(isAuthenticated);
 
   return (
     <main className={styles.container}>
@@ -23,9 +28,7 @@ const Dashboard = () => {
           localização. Todos os devs aqui estão abertos a novas oportunidades.
         </p>
 
-        {/* substituir pelo botao modal de criar conta , caso esteja logado vira  o modal de criar ou Editar perfil */}
-
-        <Modalprofile />
+        {isAuthenticated ? <Modalprofile /> : <p>Crie Sua Conta</p>}
       </header>
 
       {/* transformar essa sessao em um componente pois deve ter logica de filtragem */}
