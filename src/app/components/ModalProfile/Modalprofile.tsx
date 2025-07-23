@@ -3,6 +3,7 @@ import Select, { MultiValue } from "react-select";
 import styles from "./styles.module.css";
 import { useForm, Controller } from "react-hook-form";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 import * as React from "react";
 import Modal from "@mui/material/Modal";
@@ -108,17 +109,14 @@ export default function Modalprofile() {
       avatarUrl,
     };
 
-    console.log(fullData);
-
     try {
       const response = await createProfile(fullData);
-      console.log(response);
     } catch (err) {
       console.error(err);
       alert("Erro ao criar perfil: " + err);
     }
-    // reset();
-    // handleClose();
+    reset();
+    handleClose();
   };
 
   return (

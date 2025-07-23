@@ -2,6 +2,7 @@
 import { Profile, CreateProfileData } from "../types/Profile";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -46,13 +47,23 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+type CreateProfileResponse = {
+  message: string;
+  profile: Profile;
+};
+
 //cria ou atualiza um perfil:
 export const createProfile = async (
   profileData: CreateProfileData
 ): Promise<Profile> => {
   try {
-    const response = await api.post<Profile>("/profile/create", profileData);
-    return response.data;
+    const response = await api.post<CreateProfileResponse>(
+      "/profile/create",
+      profileData
+    );
+    toast(response.data.message);
+    console.log(response.data);
+    return response.data.profile;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
       const errorMessage =
