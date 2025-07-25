@@ -10,9 +10,15 @@ import linkedin from "../../../../public/assets/img/icons/linkedin.svg";
 import github from "../../../../public/assets/img/icons/github.svg";
 import email from "../../../../public/assets/img/icons/email.svg";
 import whatsapp from "../../../../public/assets/img/icons/whatsapp.svg";
+import pdfIcon from "../../../../public/assets/img/icons/icone-pdf.svg";
 
 import { getProfileId } from "../../services/api";
 import { Profile } from "@/app/types/Profile";
+
+import { useRef } from "react";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
+import { toast } from "react-toastify";
 
 type Props = {
   id: string;
@@ -28,6 +34,28 @@ const ProfileView = ({ id }: Props) => {
     queryFn: () => getProfileId(id),
   });
 
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  const exportToPDF = async () => {
+    if (!profileRef.current) return;
+
+    const canvas = await html2canvas(profileRef.current, {
+      scale: 2,
+      useCORS: true,
+    });
+
+    const imgData = canvas.toDataURL("image/png");
+    const pdf = new jsPDF("p", "mm", "a4");
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    pdf.save(`${profile?.name}_CV.pdf`);
+
+    toast.success("Currículo baixado com sucesso!");
+  };
+
   if (isLoading) return <span className={styles.loader}></span>;
   if (isError || !profile)
     return (
@@ -37,7 +65,11 @@ const ProfileView = ({ id }: Props) => {
     );
 
   return (
-    <section className={styles.profile_section}>
+    <section ref={profileRef} className={styles.profile_section}>
+      <button className={styles.export_button} onClick={exportToPDF}>
+        <Image src={pdfIcon} alt="pdf icon" /> Exportar como PDF
+      </button>
+
       <section className={styles.side_information}>
         <div className={styles.profile_photo}>
           <img src={profile.avatarUrl} alt="Foto de perfil" />
