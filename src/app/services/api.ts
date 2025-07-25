@@ -76,7 +76,6 @@ export const createProfile = async (
 };
 
 //pegar o profile de um usuario usando o id do userId
-
 export const getProfileByUserId = async (userId: string): Promise<Profile> => {
   try {
     const response = await api.get(`/profile/user/${userId}`);
