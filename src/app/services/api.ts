@@ -92,7 +92,7 @@ export const getProfileByUserId = async (userId: string): Promise<Profile> => {
 };
 
 //pega o profile usando o ID do Profile
-export const getProfileId = async (id: string): Promise<Profile> => {
+export const getProfileId = async (id: string): Promise<Profile | null> => {
   try {
     const response = await api.get(`/profile/${id}`);
     return response.data;
@@ -100,9 +100,10 @@ export const getProfileId = async (id: string): Promise<Profile> => {
     if (axios.isAxiosError(error) && error.response) {
       const errorMessage =
         error.response.data?.message || "Erro desconhecido na API";
-      throw new Error(errorMessage);
+      console.log(errorMessage);
+      return null;
     }
 
-    throw new Error("Erro ao buscarf perfil.");
+    return null;
   }
 };
