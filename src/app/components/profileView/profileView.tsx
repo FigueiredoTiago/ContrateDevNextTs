@@ -6,77 +6,81 @@ import github from "../../../../public/assets/img/icons/github.svg";
 import email from "../../../../public/assets/img/icons/email.svg";
 import whatsapp from "../../../../public/assets/img/icons/whatsapp.svg";
 
+import { Profile } from "../../types/Profile";
+
 import Image from "next/image";
 
-const profileView = () => {
+type ProfileViewProps = {
+  profile: Profile;
+};
+
+const profileView = ({ profile }: ProfileViewProps) => {
   return (
     <section className={styles.profile_section}>
       <section className={styles.side_information}>
-        <div className={styles.profile_photo}></div>
+        <div className={styles.profile_photo}>
+          <img src={profile.avatarUrl} alt="Foto de perfil" />
+        </div>
 
         <div className={styles.social_box}>
-          <Link href={"#"} className={styles.social_link}>
+          <Link href={"#"} target="_blank" className={styles.social_link}>
             {" "}
-            <Image src={location} alt="icone location" /> Natal-RN
+            <Image src={location} alt="icone location" />
+            {profile.city}
           </Link>
-          <Link href={"#"} className={styles.social_link}>
+          <Link
+            href={profile.linkedinUrl}
+            target="_blank"
+            className={styles.social_link}
+          >
             {" "}
             <Image src={linkedin} alt="icone linkedin" /> Linkedin
           </Link>
-          <Link href={"#"} className={styles.social_link}>
+          <Link
+            href={profile.githubUrl}
+            target="_blank"
+            className={styles.social_link}
+          >
             {" "}
             <Image src={github} alt="icone github" /> Github
           </Link>
-          <Link href={"#"} className={styles.social_link}>
+          <Link
+            href={profile.email}
+            target="_blank"
+            className={styles.social_link}
+          >
             {" "}
-            <Image src={email} alt="icone email" /> Email.com
+            <Image src={email} alt="icone email" /> {profile.email}
           </Link>
-          <Link href={"#"} className={styles.social_link}>
+          <Link href={"#"} target="_blank" className={styles.social_link}>
             {" "}
-            <Image src={whatsapp} alt="icone whatsapp" /> (88) 98877-9900
+            <Image src={whatsapp} alt="icone whatsapp" /> {profile.phone}
           </Link>
         </div>
       </section>
 
       <section className={styles.main_information}>
         <div className={styles.name_box}>
-          <h1 className={styles.name}>Tiago Figueiredo</h1>
-          <h2 className={styles.main_stack}> SR.Backend</h2>
+          <h1 className={styles.name}>{profile.name}</h1>
+          <h2 className={styles.main_stack}>{profile.mainStack}</h2>
         </div>
 
         <section className={styles.about_information}>
           <h2 className={styles.info}>SOBRE:</h2>
 
-          <p className={styles.bio}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-            dignissimos ad autem. Blanditiis, saepe in dignissimos omnis
-            pariatur nulla facilis autem, dolore beatae sunt qui praesentium
-            aperiam ipsam repellendus doloremque?
-          </p>
+          <p className={styles.bio}>{profile.about}</p>
         </section>
 
         <section className={styles.skills_box}>
           <h2 className={styles.info}>HABILIDADES:</h2>
 
           <div className={styles.skills_bubbles}>
-            <div className={styles.bubble}>
-              <p>react</p>
-            </div>
-            <div className={styles.bubble}>
-              <p>react</p>
-            </div>
-            <div className={styles.bubble}>
-              <p>react</p>
-            </div>
-            <div className={styles.bubble}>
-              <p>react</p>
-            </div>
-            <div className={styles.bubble}>
-              <p>react</p>
-            </div>
-            <div className={styles.bubble}>
-              <p>react</p>
-            </div>
+            {profile &&
+              profile.stacks.map((stack) => (
+                <div key={stack} className={styles.bubble}>
+                  <p>{stack}</p>
+                </div>
+              ))}
           </div>
         </section>
       </section>

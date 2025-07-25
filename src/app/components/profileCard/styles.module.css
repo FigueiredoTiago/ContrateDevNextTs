@@ -9,6 +9,20 @@
   justify-content: space-around;
   flex-direction: column;
 
+
+  .viewProfileLink {
+    color: #252525;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    img {
+      width: 20px;
+    }
+  }
+
   .photo {
     height: 165px;
     width: 165px;
@@ -19,6 +33,8 @@
       border-radius: 5px;
     }
   }
+
+
 
   .info {
     display: flex;

@@ -90,3 +90,19 @@ export const getProfileByUserId = async (userId: string): Promise<Profile> => {
     throw new Error("Erro ao buscarf perfil.");
   }
 };
+
+//pega o profile usando o ID do Profile
+export const getProfileId = async (id: string): Promise<Profile> => {
+  try {
+    const response = await api.get(`/profile/${id}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      const errorMessage =
+        error.response.data?.message || "Erro desconhecido na API";
+      throw new Error(errorMessage);
+    }
+
+    throw new Error("Erro ao buscarf perfil.");
+  }
+};
