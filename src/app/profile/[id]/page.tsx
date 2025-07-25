@@ -1,7 +1,5 @@
 import styles from "./styles.module.css";
 import ProfileView from "../../components/profileView/profileView";
-import { getProfileId } from "../../services/api";
-import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -9,18 +7,12 @@ type Props = {
   };
 };
 
-const Profile = async ({ params }: Props) => {
-  const profile = await getProfileId(params.id);
-
-  if (!profile) {
-    return notFound();
-  }
-
+const ProfilePage = ({ params }: Props) => {
   return (
     <section className={styles.container}>
-      <ProfileView profile={profile} />
+      <ProfileView id={params.id} />
     </section>
   );
 };
 
-export default Profile;
+export default ProfilePage;
