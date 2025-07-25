@@ -2,6 +2,7 @@
 import styles from "./styles.module.css";
 import ProfileCard from "../components/profileCard/ProfileCard";
 import Modalprofile from "../components/ModalProfile/Modalprofile";
+import ModalLogin from "../components/ModalLogin/ModalLogin";
 
 import { getProfiles } from "../services/api";
 import { useQuery } from "@tanstack/react-query";
@@ -28,7 +29,9 @@ const Dashboard = () => {
           localização. Todos os devs aqui estão abertos a novas oportunidades.
         </p>
 
-        {isAuthenticated ? <Modalprofile /> : <p>Crie Sua Conta</p>}
+        {isAuthenticated ? <Modalprofile /> : <div style={{ backgroundColor: "#252525" }}>
+          <ModalLogin />
+        </div>}
       </header>
 
       {/* transformar essa sessao em um componente pois deve ter logica de filtragem */}

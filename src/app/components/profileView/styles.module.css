@@ -1,18 +1,31 @@
 .profile_section {
   width: 730px;
-  height: 530px;
+  min-height: 530px;
   background-color: #fff;
   color: #252525;
   display: flex;
+  position: relative;
 
   .info {
     font-size: 14px;
+  }
+
+  .copy {
+    position: absolute;
+    text-align: center;
+    font-size: 14px;
+    color: #2525251e;
+    margin-top: 20px;
+
+    bottom: 0;
+    right: 10px;
+    
   }
 }
 
 .side_information {
   background-color: #252525;
-  height: 100%;
+  min-height: 100%;
   width: 250px;
   padding: 20px 0;
 
@@ -80,13 +93,21 @@
   }
 
   .about_information {
-    height: 200px;
+    padding: 10px 0;
+    min-height: 200px;
     border-bottom: 1px solid #252525;
 
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
+
+    .bio {
+      font-size: 16px;
+      color: #252525;
+      text-align: justify;
+      line-height: 1.5;
+    }
   }
 
   .skills_box {

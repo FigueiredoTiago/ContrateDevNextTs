@@ -30,7 +30,11 @@ const ProfileView = ({ id }: Props) => {
 
   if (isLoading) return <span className={styles.loader}></span>;
   if (isError || !profile)
-    return <p className={styles.error_message}>Perfil não encontrado. <a href="/">VOLTAR</a></p>;
+    return (
+      <p className={styles.error_message}>
+        Perfil não encontrado. <a href="/">VOLTAR</a>
+      </p>
+    );
 
   return (
     <section className={styles.profile_section}>
@@ -93,6 +97,8 @@ const ProfileView = ({ id }: Props) => {
           </div>
         </section>
       </section>
+
+      <span className={styles.copy}>contrate.dev.com</span>
     </section>
   );
 };
