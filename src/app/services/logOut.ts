@@ -1,13 +1,22 @@
-// utils/logout.ts
 "use client";
 
 import Cookies from "js-cookie";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
-export function logout() {
-  Cookies.remove("token");
-  Cookies.remove("userName");
-  Cookies.remove("avatarUrl");
-  Cookies.remove("id");
+export function useLogout() {
+  const client = useQueryClient();
+  const router = useRouter();
 
-  window.location.href = "/";
+  const logout = () => {
+    Cookies.remove("token");
+    Cookies.remove("userName");
+    Cookies.remove("avatarUrl");
+    Cookies.remove("id");
+
+    client.invalidateQueries({ queryKey: ["loginAuth"] });
+    window.location.href = "/";
+  };
+
+  return logout;
 }

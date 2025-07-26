@@ -18,20 +18,17 @@ type LoginAuthResponse = {
 export function useAuth() {
   const queryClient = useQueryClient();
 
-  // Usa o useQuery para tornar reativo
   const { data } = useQuery<LoginAuthResponse>({
     queryKey: ["loginAuth"],
     queryFn: async () => {
-      // Não faz uma chamada real — apenas retorna o cache atual
-      // Isso evita um fetch desnecessário
       const cachedData = queryClient.getQueryData<LoginAuthResponse>([
         "loginAuth",
       ]);
       return cachedData ?? Promise.reject("No user logged in");
     },
-    staleTime: Infinity,
+    staleTime: 0,
     refetchOnWindowFocus: false,
-    enabled: true, // Mantém o hook ativo
+    enabled: true,
   });
 
   const user = data?.user ?? null;

@@ -4,11 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../../public/assets/img/logo.svg";
 import ModalLogin from "../ModalLogin/ModalLogin";
-import { logout } from "@/app/services/logOut";
+import { useLogout } from "@/app/services/logOut";
 import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, isAuthenticated } = useAuth();
+  const logout = useLogout();
 
   return (
     <header className={styles.navbar}>
