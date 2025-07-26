@@ -39,12 +39,12 @@
     }
 
     cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
   }
-
-
 }
-
-
 
 .side_information {
   background-color: #252525;
@@ -87,6 +87,15 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
+      transition: all 0.3s ease-in-out;
+
+      img {
+        width: 20px;
+      }
+
+      &:hover {
+        color: #3b82f6;
+      }
     }
   }
 }
@@ -154,9 +163,16 @@
         font-size: 16px;
         margin-right: 10px;
         display: inline-block;
+        transition: all ease-in-out 0.3s;
 
         &:last-child {
           margin-right: 0;
+        }
+
+        &:hover {
+          background-color: #2563eb;
+          cursor: pointer;
+          scale: 1.1;
         }
       }
     }
