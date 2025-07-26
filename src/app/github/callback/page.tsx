@@ -74,7 +74,23 @@ export default function GithubCallback() {
   }, [router, data, code, queryClient]);
 
   if (isLoading) {
-    return <p>Autenticando com o GitHub...</p>;
+    return (
+      <p
+        style={{
+          height: "100vh",
+          margin: 0,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "1.5rem",
+          fontWeight: "600",
+          color: "#333",
+          backgroundColor: "#f0f0f0",
+        }}
+      >
+        Autenticando com o GitHub...
+      </p>
+    );
   }
 
   return;
