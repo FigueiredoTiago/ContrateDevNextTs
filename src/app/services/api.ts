@@ -55,7 +55,7 @@ type CreateProfileResponse = {
 //cria ou atualiza um perfil:
 export const createProfile = async (
   profileData: CreateProfileData
-): Promise<Profile> => {
+): Promise<Profile | null> => {
   try {
     const response = await api.post<CreateProfileResponse>(
       "/profile/create",
@@ -68,15 +68,17 @@ export const createProfile = async (
     if (axios.isAxiosError(error) && error.response) {
       const errorMessage =
         error.response.data?.message || "Erro desconhecido na API";
-      throw new Error(errorMessage);
+      toast.error(errorMessage);
     }
 
-    throw new Error("Erro ao criar perfil.");
+    return null;
   }
 };
 
 //pegar o profile de um usuario usando o id do userId
-export const getProfileByUserId = async (userId: string): Promise<Profile> => {
+export const getProfileByUserId = async (
+  userId: string
+): Promise<Profile | null> => {
   try {
     const response = await api.get(`/profile/user/${userId}`);
     return response.data;
@@ -84,10 +86,10 @@ export const getProfileByUserId = async (userId: string): Promise<Profile> => {
     if (axios.isAxiosError(error) && error.response) {
       const errorMessage =
         error.response.data?.message || "Erro desconhecido na API";
-      throw new Error(errorMessage);
+      toast.error(errorMessage);
     }
 
-    throw new Error("Erro ao buscarf perfil.");
+    return null;
   }
 };
 
