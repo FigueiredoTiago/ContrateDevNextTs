@@ -4,19 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../../../../public/assets/img/logo.svg";
 import ModalLogin from "../ModalLogin/ModalLogin";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import { logout } from "@/app/services/logOut";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
-  const [userName, setUserName] = useState<string | null>(null);
-
-  useEffect(() => {
-    const name = Cookies.get("userName");
-    if (name) {
-      setUserName(name);
-    }
-  }, []);
+  const { user, isAuthenticated } = useAuth();
 
   return (
     <header className={styles.navbar}>
@@ -28,15 +20,15 @@ const Navbar = () => {
       </nav>
 
       <div className={styles.boxBtn}>
-        {userName ? (
-          <p className={styles.userName}>{userName}</p>
+        {isAuthenticated ? (
+          <>
+            <p className={styles.userName}>{user?.name}</p>
+            <button onClick={logout} className={styles.logOutBtn}>
+              sair
+            </button>
+          </>
         ) : (
           <ModalLogin />
-        )}
-        {userName && (
-          <button onClick={logout} className={styles.logOutBtn}>
-            sair
-          </button>
         )}
       </div>
     </header>

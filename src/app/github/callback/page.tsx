@@ -4,24 +4,39 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function GithubCallback() {
   const router = useRouter();
 
+  const url = new URL(window.location.href);
+
+  const code = url.searchParams.get("code");
+
+  const queryClient = useQueryClient();
+
+  //salvar as informacoes de login usando o reack query
+  const { data, isLoading } = useQuery({
+    queryKey: ["loginAuth"],
+    queryFn: async () => {
+      const profileResponse = await axios.post(
+        "http://localhost:3333/auth/login",
+        {
+          code,
+        }
+      );
+      return profileResponse.data;
+    },
+    staleTime: 1000 * 60 * 5, // 5 minutos
+    retry: false,
+  });
+
   useEffect(() => {
     const handleGithubLogin = async () => {
-      const url = new URL(window.location.href);
-
-      const code = url.searchParams.get("code");
-
       try {
-        const response = await axios.post("http://localhost:3333/auth/login", {
-          code,
-        });
+        console.log("Dados do fetch de login ", data);
 
-        console.log("Dados do fetch de login ", response.data);
-
-        const { user, token } = response.data;
+        const { user, token } = data;
 
         Cookies.set("token", token, { expires: 1 });
 
@@ -30,6 +45,11 @@ export default function GithubCallback() {
         Cookies.set("userName", user.name, { expires: 1 });
 
         Cookies.set("avatarUrl", user.avatarUrl, { expires: 1 });
+
+        queryClient.setQueryData(["loginAuth"], {
+          user,
+          token,
+        });
 
         router.push("/");
       } catch (error: any) {
@@ -51,7 +71,11 @@ export default function GithubCallback() {
     };
 
     handleGithubLogin();
-  }, [router]);
+  }, [router, data, code, queryClient]);
 
-  return <p>Autenticando com o GitHub...</p>;
+  if (isLoading) {
+    return <p>Autenticando com o GitHub...</p>;
+  }
+
+  return;
 }

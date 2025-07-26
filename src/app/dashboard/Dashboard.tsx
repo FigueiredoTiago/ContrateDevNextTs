@@ -6,7 +6,7 @@ import ModalLogin from "../components/ModalLogin/ModalLogin";
 
 import { getProfiles } from "../services/api";
 import { useQuery } from "@tanstack/react-query";
-import { isAuth } from "../hooks/isAuth";
+import { useAuth } from "../hooks/useAuth";
 
 const Dashboard = () => {
   const { data, isLoading, error } = useQuery({
@@ -14,9 +14,7 @@ const Dashboard = () => {
     queryFn: getProfiles,
   });
 
-  const { isAuthenticated, user } = isAuth();
-
-  console.log(isAuthenticated);
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <main className={styles.container}>
@@ -29,9 +27,13 @@ const Dashboard = () => {
           localização. Todos os devs aqui estão abertos a novas oportunidades.
         </p>
 
-        {isAuthenticated ? <Modalprofile /> : <div style={{ backgroundColor: "#252525" }}>
-          <ModalLogin />
-        </div>}
+        {isAuthenticated ? (
+          <Modalprofile />
+        ) : (
+          <div style={{ backgroundColor: "#252525" }}>
+            <ModalLogin />
+          </div>
+        )}
       </header>
 
       {/* transformar essa sessao em um componente pois deve ter logica de filtragem */}
