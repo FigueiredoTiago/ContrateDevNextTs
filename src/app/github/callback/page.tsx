@@ -18,7 +18,7 @@ export default function GithubCallback() {
   const queryClient = useQueryClient();
 
   //salvar as informacoes de login usando o reack query
-  const { data, isLoading} = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["loginAuth"],
     queryFn: async () => {
       const profileResponse = await axios.post(`${apiUrl}/auth/login`, {
@@ -51,20 +51,21 @@ export default function GithubCallback() {
         });
 
         router.push("/");
-      } catch (error: any) {
-        if (error.response) {
-          // Resposta do servidor com código de erro
-          console.error(
-            "Erro na resposta da API:",
-            error.response.status,
-            error.response.data
-          );
-        } else if (error.request) {
-          // Requisição feita, mas sem resposta
-          console.error("Erro na requisição, sem resposta:", error.request);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          if (error.response) {
+            console.error(
+              "Erro na resposta da API:",
+              error.response.status,
+              error.response.data
+            );
+          } else if (error.request) {
+            console.error("Erro na requisição, sem resposta:", error.request);
+          } else {
+            console.error("Erro desconhecido:", error.message);
+          }
         } else {
-          // Outro erro
-          console.error("Erro desconhecido:", error.message);
+          console.error("Erro não relacionado ao Axios:", error);
         }
       }
     };
