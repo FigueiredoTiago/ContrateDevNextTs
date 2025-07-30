@@ -1,6 +1,6 @@
 .profile_section {
   width: 730px;
-  min-height: 530px;
+  height: 100dvh;
   background-color: #fff;
   color: #252525;
   display: flex;
@@ -48,8 +48,9 @@
 
 .side_information {
   background-color: #252525;
-  min-height: 530px;
+  height: 100dvh;
   width: 250px;
+  min-width: max-content;
   padding: 20px 0;
 
   display: flex;
