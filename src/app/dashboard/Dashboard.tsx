@@ -14,7 +14,7 @@ const Dashboard = () => {
     queryFn: getProfiles,
   });
 
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <main className={styles.container}>

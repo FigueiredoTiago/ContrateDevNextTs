@@ -13,6 +13,7 @@ import { getProfileByUserId } from "../../services/api";
 
 import Image from "next/image";
 import glasses from "../../../../public/assets/img/glasses.svg";
+import { toast } from "react-toastify";
 
 type Option = {
   value: string;
@@ -112,6 +113,7 @@ export default function Modalprofile() {
 
     try {
       const response = await createProfile(fullData);
+      toast.success("Bem Vindo: " + response?.name);
     } catch (err) {
       console.error(err);
       alert("Erro ao criar perfil: " + err);

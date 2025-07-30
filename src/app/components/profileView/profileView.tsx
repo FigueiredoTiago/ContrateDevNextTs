@@ -60,7 +60,7 @@ const ProfileView = ({ id }: Props) => {
   if (isError || !profile)
     return (
       <p className={styles.error_message}>
-        Perfil não encontrado. <a href="/">VOLTAR</a>
+        Perfil não encontrado. <Link href={"/"}>VOLTAR</Link>
       </p>
     );
 
