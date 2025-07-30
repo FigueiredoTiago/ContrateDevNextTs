@@ -1,9 +1,8 @@
 "use client";
-import Select, { MultiValue } from "react-select";
+import Select from "react-select";
 import styles from "./styles.module.css";
 import { useForm, Controller } from "react-hook-form";
 import Cookies from "js-cookie";
-import { toast } from "react-toastify";
 
 import * as React from "react";
 import Modal from "@mui/material/Modal";
@@ -73,18 +72,20 @@ export default function Modalprofile() {
       try {
         const profileData = await getProfileByUserId(userId);
 
-        reset({
-          name: profileData.name || "",
-          email: profileData.email || "",
-          githubUrl: profileData.githubUrl || "",
-          linkedinUrl: profileData.linkedinUrl || "",
-          city: profileData.city || "",
-          mainStack: profileData.mainStack || "",
-          phone: profileData.phone || "",
-          stacks: profileData.stacks || [],
-          websiteUrl: profileData.websiteUrl || "",
-          about: profileData.about || "",
-        });
+        if (profileData) {
+          reset({
+            name: profileData.name || "",
+            email: profileData.email || "",
+            githubUrl: profileData.githubUrl || "",
+            linkedinUrl: profileData.linkedinUrl || "",
+            city: profileData.city || "",
+            mainStack: profileData.mainStack || "",
+            phone: profileData.phone || "",
+            stacks: profileData.stacks || [],
+            websiteUrl: profileData.websiteUrl || "",
+            about: profileData.about || "",
+          });
+        }
       } catch (error) {
         console.log(error);
       }

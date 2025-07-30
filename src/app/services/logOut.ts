@@ -2,11 +2,9 @@
 
 import Cookies from "js-cookie";
 import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 
 export function useLogout() {
   const client = useQueryClient();
-  const router = useRouter();
 
   const logout = () => {
     Cookies.remove("token");

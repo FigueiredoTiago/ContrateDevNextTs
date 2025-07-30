@@ -18,7 +18,7 @@ export default function GithubCallback() {
   const queryClient = useQueryClient();
 
   //salvar as informacoes de login usando o reack query
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading} = useQuery({
     queryKey: ["loginAuth"],
     queryFn: async () => {
       const profileResponse = await axios.post(`${apiUrl}/auth/login`, {
