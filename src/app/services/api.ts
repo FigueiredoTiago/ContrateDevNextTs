@@ -17,7 +17,7 @@ export const api = axios.create({
 
 export const getProfiles = async (): Promise<Profile[]> => {
   try {
-    const response = await api.get<Profile[]>("profile/random");
+    const response = await api.get<Profile[]>("/profile/random");
 
     if (Array.isArray(response.data) && response.data.length === 0) {
       throw new Error("Nenhum perfil encontrado.");

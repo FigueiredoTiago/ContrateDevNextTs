@@ -9,6 +9,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 export default function GithubCallback() {
   const router = useRouter();
 
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   const url = new URL(window.location.href);
 
   const code = url.searchParams.get("code");
@@ -16,15 +18,12 @@ export default function GithubCallback() {
   const queryClient = useQueryClient();
 
   //salvar as informacoes de login usando o reack query
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["loginAuth"],
     queryFn: async () => {
-      const profileResponse = await axios.post(
-        "http://localhost:3333/auth/login",
-        {
-          code,
-        }
-      );
+      const profileResponse = await axios.post(`${apiUrl}/auth/login`, {
+        code,
+      });
       return profileResponse.data;
     },
     staleTime: 1000 * 60 * 5, // 5 minutos
