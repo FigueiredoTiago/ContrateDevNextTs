@@ -4,6 +4,7 @@ import Linkedin from "../../../../public/assets/img/linkedin.svg";
 import Github from "../../../../public/assets/img/github.svg";
 import Location from "../../../../public/assets/img/location.svg";
 import glasses from "../../../../public/assets/img/glasses.svg";
+import Link from "next/link";
 
 import { Profile } from "@/app/types/Profile";
 
@@ -14,11 +15,10 @@ type ProfileCardProps = {
 const ProfileCard = ({ profile }: ProfileCardProps) => {
   return (
     <div className={styles.card}>
-
-      <a href={`/profile/${profile.id}`} className={styles.viewProfileLink}>
+      <Link href={`/profile/${profile.id}`} className={styles.viewProfileLink}>
         <Image src={glasses} alt="Ver perfil completo" width={24} height={24} />
         ver perfil
-      </a>
+      </Link>
 
       <div className={styles.photo}>
         <img src={profile.avatarUrl} alt="perfil imagem" />

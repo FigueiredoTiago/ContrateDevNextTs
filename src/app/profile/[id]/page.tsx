@@ -2,13 +2,7 @@ import styles from "./styles.module.css";
 import ProfileView from "../../components/profileView/profileView";
 import Link from "next/link";
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-
-const ProfilePage = async ({ params }: PageProps) => {
+const ProfilePage = ({ params }: { params: { id: string } }) => {
   return (
     <section className={styles.container}>
       <h1 className={styles.title}>
